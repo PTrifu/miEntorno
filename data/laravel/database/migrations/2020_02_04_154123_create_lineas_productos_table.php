@@ -18,7 +18,8 @@ class CreateLineasProductosTable extends Migration
             $table->bigInteger('IdProducto')->unsigned();
             $table->bigInteger('IdFactura')->unsigned();
             $table->bigInteger('Catidad');
-            $table->decimal('PrecioTotal',9,6);               
+            $table->decimal('PrecioUnitario',9,6);
+            $table->decimal('PrecioTotal',9,6);                           
             $table->timestamps();
         });
 

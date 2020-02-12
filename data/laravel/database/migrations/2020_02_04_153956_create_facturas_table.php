@@ -19,6 +19,9 @@ class CreateFacturasTable extends Migration
             $table->decimal('porcentaImpuesto',4,2);
             $table->bigInteger('IdCliente')->unsigned();
             $table->dateTime('FechaFactura');
+            $table->string('Logo');
+            $table->decimal('ImporteTotal',9,6);
+            $table->string('NombreEmpresa');
             $table->timestamps();
         });
 

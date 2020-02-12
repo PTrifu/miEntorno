@@ -26,3 +26,7 @@ Route::get('cli',function(){
     return view('cliente');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

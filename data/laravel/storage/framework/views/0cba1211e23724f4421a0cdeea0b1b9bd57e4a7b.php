@@ -39,6 +39,12 @@
 		<label class="description" for="element_4">DNI(*) </label>
 		<div>
 			<input id="element_4" name="element_4" class="element text medium" type="text" maxlength="255" value=""/> 
+		</div>
+		</li>
+		<li id="li_5" >
+		<label class="description" for="element_5">Direccion(*) </label>
+		<div>
+			<input id="element_5" name="element_5" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div> 
 		</li>
 			
