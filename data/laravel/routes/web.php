@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,9 +23,7 @@ Route::get('fac', function () {
 Route::get('pro',function(){
     return view('producto');
 });
-Route::get('cli',function(){
-    return view('cliente');
-});
+Route::get('cli','ControllerCliente@Index');
 
 
 Auth::routes();

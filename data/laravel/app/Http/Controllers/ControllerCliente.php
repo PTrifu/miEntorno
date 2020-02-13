@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cliente;
+
+use Illuminate\Support\Facades\DB;
 
 class ControllerCliente extends Controller
 {
@@ -13,7 +16,9 @@ class ControllerCliente extends Controller
      */
     public function index()
     {
-        //
+    
+        $clientes = Cliente::all();
+        return view('cliente')->with('clientes',$clientes);
     }
 
     /**

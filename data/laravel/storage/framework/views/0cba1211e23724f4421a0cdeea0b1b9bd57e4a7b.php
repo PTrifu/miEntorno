@@ -8,7 +8,8 @@
 <script type="text/javascript" src="<?php echo e(asset('js/calendar.js')); ?>"></script>
 </head>
 <body id="main_body" >
-	
+	<?php echo e($clientes[0]); ?>
+
     <img id="top" src="<?php echo e(asset('images/top.png')); ?>" alt="">
 	<div id="form_container">
 	

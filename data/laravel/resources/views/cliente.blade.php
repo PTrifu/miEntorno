@@ -8,7 +8,7 @@
 <script type="text/javascript" src="{{ asset('js/calendar.js') }}"></script>
 </head>
 <body id="main_body" >
-	
+	{{$clientes[0]}}
     <img id="top" src="{{ asset('images/top.png') }}" alt="">
 	<div id="form_container">
 	
