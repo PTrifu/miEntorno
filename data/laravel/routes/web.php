@@ -23,9 +23,23 @@ Route::get('fac', function () {
 Route::get('pro',function(){
     return view('producto');
 });
-Route::get('cli','ControllerCliente@Index');
-
-
-Auth::routes();
+Route::get('cli',function(){
+    return view('cliente');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/lista','ControllerFactura@index')->name('lista');
+
+Route::get('/lista/show/{id}','ControllerFactura@show')->name('show');
+
+Route::get('/eliminar/{id}','ControllerFactura@destroy')->name('destroy');
+//obtener datos del formulario para guardarlo
+Route::post('/crear','ControllerCliente@store')->name('store');
+
+Route::get('/listarCliente','ControllerCliente@index')->name('listarcliente');
+
+Route::get('/cli/edit/{id}','ControllerCliente@edit')->name('editcliente');
+
+Route::post('/cli/update/{id}','ControllerCliente@update')->name('store');
+Auth::routes();

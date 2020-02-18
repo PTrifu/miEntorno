@@ -18,7 +18,7 @@ class ControllerCliente extends Controller
     {
     
         $clientes = Cliente::all();
-        return view('cliente')->with('clientes',$clientes);
+        return view('listadoClientes')->with('Clientes',$clientes);
     }
 
     /**
@@ -39,7 +39,14 @@ class ControllerCliente extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cliente = new Cliente;
+        $cliente->Nombre = $request->input('nombre');
+        $cliente->Apellido1 = $request->input('apellido1');
+        $cliente->Apellido2 = $request->input('apellido2');
+        $cliente->DNI = $request->input('dni');
+        $cliente->Direccion = $request->input('dire');
+        $cliente->save();
+        return redirect()->route('listarcliente');
     }
 
     /**
@@ -61,7 +68,9 @@ class ControllerCliente extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = DB::select('select * from clientes where idCliente = ?',[$id])[0];
+
+        return view('editCliente')->with('cliente',$cliente);
     }
 
     /**
@@ -73,7 +82,16 @@ class ControllerCliente extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $cliente = Cliente::where('idCliente',$id)->get()[0];
+
+        //$cliente = DB::select('select * from clientes where idCliente = ?',[$id])[0];
+       // echo '<script>console.log("'.$request->input('nombre').'")</script>';
+        //echo '<script>console.log("update clientes set Nombre = '.$request->input('nombre').' Apellido1 = '.$request->input('apellido1').' Apellido2 = '.$request->input('apellido2').' DNI = '.$request->input('dni').' Direccion = '.$request->input('dire').' where idCliente ='.$id.'")</script>';
+        
+         DB::update('update clientes set Nombre = \''.$request->input('nombre').'\', Apellido1 = \''.$request->input('apellido1').'\', Apellido2 = \''.$request->input('apellido2').'\', DNI = \''.$request->input('dni').'\', Direccion = \''.$request->input('dire').'\' where idCliente ='.$id);
+         return redirect()->route('listarcliente');
+        
     }
 
     /**

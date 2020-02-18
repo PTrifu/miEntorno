@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
+use App\Factura;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
+
 
 class ControllerFactura extends Controller
 {
@@ -13,7 +18,8 @@ class ControllerFactura extends Controller
      */
     public function index()
     {
-        //
+        $facturas = Factura::all();
+        return view('listado')->with('facturas',$facturas);
     }
 
     /**
@@ -45,8 +51,17 @@ class ControllerFactura extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $factura = DB::select('select * from facturas where idFactura = ?',[$id])[0];
+        $listaProductos = DB::select('SELECT lp.IdProducto, lp.Catidad, lp.PrecioUnitario, lp.PrecioTotal, p.Descripcion FROM lineas_productos lp JOIN productos p ON lp.IdProducto = p.IdProducto WHERE lp.idFactura = ?', [$id]);
+        $cliente = DB::select('select * from clientes where idCliente = ?',[$id])[0];
+
+        echo '<script>console.log(\''.json_encode($listaProductos[0]).'\')</script>';
+
+        return view('facturashow')->with('factura', $factura)->with('linasXproducto', $listaProductos)->with('cliente', $cliente);
+        
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -56,7 +71,7 @@ class ControllerFactura extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -79,6 +94,16 @@ class ControllerFactura extends Controller
      */
     public function destroy($id)
     {
-        //
+      
+        $factura = DB::delete('delete from facturas where idFactura = ?',[$id]);       
+        if ($factura > 0) {
+            echo '<script>console.log(\''.$factura.'\')</script>';
+        }else{
+            echo '<script>console.log(\'Borrado\')</script>';
+        }      
+
+        return redirect()->route('lista');
+
+        
     }
 }
